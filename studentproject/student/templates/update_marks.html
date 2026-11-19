@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Update Marks</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    Telugu:
+    <input type="number" name="telugu" value="{{ marks.telugu }}" required>
+    <br><br>
+
+    English:
+    <input type="number" name="english" value="{{ marks.english }}" required>
+    <br><br>
+
+    Maths:
+    <input type="number" name="maths" value="{{ marks.maths }}" required>
+    <br><br>
+
+    Science:
+    <input type="number" name="science" value="{{ marks.science }}" required>
+    <br><br>
+
+    <button type="submit">Update Marks</button>
+
+</form>
+
+{% endblock %}
