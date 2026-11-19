@@ -1,0 +1,84 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Search Student</h2>
+
+<form method="post">
+
+    {% csrf_token %}
+
+    Enter Roll Number
+
+    <input type="text" name="roll" required>
+
+    <button type="submit">Search</button>
+
+</form>
+
+{% if error %}
+    <p style="color:red;">{{ error }}</p>
+{% endif %}
+
+{% if student %}
+
+<h3>Student Details</h3>
+
+<table>
+
+    <tr>
+        <th>Roll</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Course</th>
+        <th>Action</th>
+    </tr>
+
+    <tr>
+        <td>{{ student.roll }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.course }}</td>
+
+        <td>
+            <a href="{% url 'edit_student' student.id %}">
+                Edit
+            </a>
+        </td>
+    </tr>
+
+</table>
+
+{% endif %}
+
+{% if marks %}
+
+<h3>Marks</h3>
+
+<table>
+
+    <tr>
+        <th>Telugu</th>
+        <th>English</th>
+        <th>Maths</th>
+        <th>Science</th>
+    </tr>
+
+    <tr>
+        <td>{{ marks.telugu }}</td>
+        <td>{{ marks.english }}</td>
+        <td>{{ marks.maths }}</td>
+        <td>{{ marks.science }}</td>
+    </tr>
+
+</table>
+
+{% elif student %}
+
+<p>No marks added for this student.</p>
+
+{% endif %}
+
+{% endblock %}
+
